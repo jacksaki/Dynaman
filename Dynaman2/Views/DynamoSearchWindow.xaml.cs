@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -21,11 +22,19 @@ namespace Dynaman.Views
      *
      * Those events are managed using WeakEventListener, so it is not occurred memory leak, but you should release explicitly.
      */
-    public partial class MainWindow : MahApps.Metro.Controls.MetroWindow
+    public partial class DynamoSearchWindow : MahApps.Metro.Controls.MetroWindow
     {
-        public MainWindow()
+        public DynamoSearchWindow()
         {
             InitializeComponent();
+        }
+
+        private void g_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        {
+            var column = (DataGridBoundColumn)e.Column;
+            var dv = (DataView)((DataGrid)sender).ItemsSource;
+            var index = dv.Table.Columns.IndexOf(e.PropertyName);
+            column.Header = dv.Table.Columns[index].Caption;
         }
     }
 }

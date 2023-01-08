@@ -1,16 +1,17 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>dynaman.ico</ApplicationIcon>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Include="dynaman.ico" />
-  </ItemGroup>
-
+	<ItemGroup>
+		<None Remove="dynaman.ico" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="dynaman.ico" />
+	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.101.14" />
 		<PackageReference Include="AWSSDK.SecurityToken" Version="3.7.100.44" />
@@ -24,26 +25,10 @@
 		<PackageReference Include="SSH.NET" Version="2020.0.2" />
 		<PackageReference Include="ZLogger" Version="1.7.0" />
 	</ItemGroup>
-
 	<ItemGroup>
-    <Compile Update="ViewModels\DynamoBoxViewModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\DynamoBox.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="log4net.conf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="Views\MainWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
+		<None Update="log4net.conf">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
 </Project>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Markup;
 
-namespace Dynaman2.Views {
+namespace Dynaman.Views {
     public class EnumListExtension : MarkupExtension {
         private Type enumType;
         public EnumListExtension(Type type) {

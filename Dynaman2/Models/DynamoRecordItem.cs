@@ -1,24 +1,23 @@
 ﻿using Amazon.DynamoDBv2.Model;
 using Livet;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Dynaman2.Models {
-
-    public class DynamoRecordItem : NotificationObject {
-
-        public DynamoRecordItem(DynamoRecord parent, string columnName, AttributeValue value) {
+namespace Dynaman.Models
+{
+    public class DynamoRecordItem : NotificationObject
+    {
+        public DynamoRecordItem(DynamoRecord parent, string columnName, AttributeValue value)
+        {
             this.Parent = parent;
             this.ColumnName = columnName;
-            this.RecordType = value.GetRecordTypes();
-            switch (this.RecordType) {
+            this.ColumnType = value.GetColumnTypes();
+            switch (this.ColumnType)
+            {
                 case ColumnTypes.Binary:
                     this.BinaryValue = value.B.ToArray();
                     break;
@@ -27,7 +26,8 @@ namespace Dynaman2.Models {
                     this.BinaryListValue.CollectionChanged += (sender, e) => {
                         RaisePropertyChanged(nameof(BinaryListValue));
                     };
-                    foreach (var v in value.BS) {
+                    foreach (var v in value.BS)
+                    {
                         this.BinaryListValue.Add(v.ToArray());
                     }
                     break;
@@ -48,24 +48,51 @@ namespace Dynaman2.Models {
                     break;
                 case ColumnTypes.Map:
                     this.IsMap = true;
-                    this.RecordType = ColumnTypes.Map;
+                    this.ColumnType = ColumnTypes.Map;
                     break;
                 case ColumnTypes.Null:
                     throw new ApplicationException("Null,Map");
             }
         }
+        public DynamoRecord Parent
+        {
+            get;
+            private set;
+        }
+        private string _ColumnName;
 
-        private ColumnTypes _RecordType;
-
-        public ColumnTypes RecordType {
-            get {
-                return _RecordType;
+        public string ColumnName
+        {
+            get
+            {
+                return _ColumnName;
             }
-            set { 
-                if (_RecordType == value) {
+            set
+            { 
+                if (_ColumnName == value)
+                {
                     return;
                 }
-                _RecordType = value;
+                _ColumnName = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        private ColumnTypes _ColumnType;
+
+        public ColumnTypes ColumnType
+        {
+            get
+            {
+                return _ColumnType;
+            }
+            set
+            { 
+                if (_ColumnType == value)
+                {
+                    return;
+                }
+                _ColumnType = value;
                 RaisePropertyChanged();
             }
         }
@@ -73,12 +100,16 @@ namespace Dynaman2.Models {
 
         private bool _IsMap = false;
 
-        public bool IsMap {
-            get {
+        public bool IsMap
+        {
+            get
+            {
                 return _IsMap;
             }
-            set { 
-                if (_IsMap == value) {
+            set
+            {
+                if (_IsMap == value)
+                {
                     return;
                 }
                 _IsMap = value;
@@ -90,7 +121,7 @@ namespace Dynaman2.Models {
         {
             get
             {
-                switch (this.RecordType)
+                switch (this.ColumnType)
                 {
                     case ColumnTypes.Binary:
                         return Convert.ToBase64String(this.BinaryValue);
@@ -112,7 +143,7 @@ namespace Dynaman2.Models {
             }
             set
             {
-                switch (this.RecordType)
+                switch (this.ColumnType)
                 {
                     case ColumnTypes.Binary:
                         this.BinaryValue = Convert.FromBase64String(value?.ToString());
@@ -138,38 +169,19 @@ namespace Dynaman2.Models {
                 }
             }
         }
-        public DynamoRecord Parent {
-            get;
-        }
-
-
-        private string _ColumnName;
-
-        public string ColumnName
-        {
-            get
-            {
-                return _ColumnName;
-            }
-            set
-            { 
-                if (_ColumnName == value)
-                {
-                    return;
-                }
-                _ColumnName = value;
-                RaisePropertyChanged();
-            }
-        }
 
         private bool _BoolValue;
 
-        public bool BoolValue {
-            get {
+        public bool BoolValue
+        {
+            get
+            {
                 return _BoolValue;
             }
-            set { 
-                if (_BoolValue == value) {
+            set
+            {
+                if (_BoolValue == value)
+                {
                     return;
                 }
                 _BoolValue = value;
@@ -180,12 +192,16 @@ namespace Dynaman2.Models {
 
         private string _StringValue;
 
-        public string StringValue {
-            get {
+        public string StringValue
+        {
+            get
+            {
                 return _StringValue;
             }
-            set {
-                if (_StringValue == value) {
+            set
+            {
+                if (_StringValue == value)
+                {
                     return;
                 }
                 _StringValue = value;
@@ -195,12 +211,16 @@ namespace Dynaman2.Models {
 
         private string _ListValueText;
 
-        public string ListValueText {
-            get {
+        public string ListValueText
+        {
+            get
+            {
                 return _ListValueText;
             }
-            set { 
-                if (_ListValueText == value) {
+            set
+            {
+                if (_ListValueText == value)
+                {
                     return;
                 }
                 _ListValueText = value;
@@ -210,12 +230,16 @@ namespace Dynaman2.Models {
 
         private double? _NumberValue;
 
-        public double? NumberValue {
-            get {
+        public double? NumberValue
+        {
+            get
+            {
                 return _NumberValue;
             }
-            set { 
-                if (_NumberValue == value) {
+            set
+            {
+                if (_NumberValue == value)
+                {
                     return;
                 }
                 _NumberValue = value;
@@ -225,12 +249,16 @@ namespace Dynaman2.Models {
 
         private byte[] _BinaryValue;
 
-        public byte[] BinaryValue {
-            get {
+        public byte[] BinaryValue
+        {
+            get
+            {
                 return _BinaryValue;
             }
-            set { 
-                if (_BinaryValue == value) {
+            set
+            {
+                if (_BinaryValue == value)
+                {
                     return;
                 }
                 _BinaryValue = value;
@@ -241,12 +269,16 @@ namespace Dynaman2.Models {
 
         private ObservableCollection<byte[]> _BinaryListValue;
 
-        public ObservableCollection<byte[]> BinaryListValue {
-            get {
+        public ObservableCollection<byte[]> BinaryListValue
+        {
+            get
+            {
                 return _BinaryListValue;
             }
-            set { 
-                if (_BinaryListValue == value) {
+            set
+            {
+                if (_BinaryListValue == value)
+                {
                     return;
                 }
                 _BinaryListValue = value;

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dynaman2.Models {
+namespace Dynaman.Models {
     public enum ColumnTypes {
         [EnumText("バイナリ")]
         Binary,

@@ -4,14 +4,14 @@ using Livet.EventListeners;
 using Livet.Messaging;
 using Livet.Messaging.IO;
 using Livet.Messaging.Windows;
-using Dynaman2.Models;
+using Dynaman.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
-namespace Dynaman2.ViewModels {
+namespace Dynaman.ViewModels {
     public class ExceptionWindowViewModel : ViewModel {
         public void Initialize() {
         }

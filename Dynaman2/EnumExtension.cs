@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dynaman2 {
+namespace Dynaman {
     [AttributeUsage(AttributeTargets.Field)]
     public sealed class EnumTextAttribute : Attribute {
         public EnumTextAttribute(string text) {

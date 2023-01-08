@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dynaman2.Models {
+namespace Dynaman.Models {
     internal class DynamoClient {
         public static AmazonDynamoDBClient GetClient() {
             var conf = new AmazonDynamoDBConfig();

@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dynaman2.Models {
+namespace Dynaman.Models {
     public class DynamoKey : NotificationObject {
         public DynamoKey(string name, string type) : base() {
             this.Name = name;

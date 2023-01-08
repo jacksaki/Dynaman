@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace Dynaman2 {
+namespace Dynaman {
     public static class Extensions {
 
         public static string GetDefaultString(this string value, string defaultText) {

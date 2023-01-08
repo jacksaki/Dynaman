@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 [assembly: log4net.Config.XmlConfigurator(ConfigFile = "log4net.conf", Watch = true)]
 
-namespace Dynaman2 {
+namespace Dynaman {
     public class Logger {
         private static string GetClassName(string path) {
             return System.IO.Path.GetFileNameWithoutExtension(path);

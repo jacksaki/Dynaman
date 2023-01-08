@@ -106,7 +106,7 @@
                             </Button>
                         </Grid>
                     </wpf:Card>
-                    <DataGrid x:Name="g" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" Grid.Row="1" IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow" AutoGenerateColumns="True" ItemsSource="{Binding Records.Data}">
+                    <DataGrid x:Name="g" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" Grid.Row="1" IsReadOnly="True" SelectionMode="Single" SelectionUnit="FullRow" AutoGenerateColumns="True" ItemsSource="{Binding ScannedRecords.Data}">
                         <b:Interaction.Triggers>
                             <b:EventTrigger EventName="SelectionChanged">
                                 <b:InvokeCommandAction Command="{Binding SelectedRecordChangedCommand}" CommandParameter="{Binding SelectedIndex,ElementName=g}">

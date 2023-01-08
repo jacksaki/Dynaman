@@ -1,4 +1,4 @@
-﻿using Amazon.DynamoDBv2.Model;
+﻿using Livet;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,10 +6,10 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Livet;
-namespace Dynaman2.Models
+
+namespace Dynaman.Models
 {
-    public class DynamoRecordCollection:NotificationObject, IEnumerable<DynamoRecord>
+    public class DynamoRecordCollection : NotificationObject, IEnumerable<DynamoRecord>
     {
         private List<DynamoRecord> _list = new List<DynamoRecord>();
         public void Add(DynamoRecord record)
@@ -34,7 +34,7 @@ namespace Dynaman2.Models
                 return _SelectedRecord;
             }
             set
-            { 
+            {
                 if (_SelectedRecord == value)
                 {
                     return;
@@ -48,8 +48,8 @@ namespace Dynaman2.Models
             var dt = new DataTable();
             foreach (var col in _list.SelectMany(x => x.Items).Where(x => !x.IsMap).Select(x => x.ColumnName).Distinct())
             {
-                var c = new DataColumn(col.Replace(".","").Replace("_", "__"));
-                c.Caption = col.Replace("_","__");
+                var c = new DataColumn(col.Replace(".", "").Replace("_", "__"));
+                c.Caption = col.Replace("_", "__");
                 dt.Columns.Add(c);
             }
             foreach (var record in _list)

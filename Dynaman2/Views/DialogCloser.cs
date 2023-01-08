@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Dynaman2.Views {
+namespace Dynaman.Views {
     public static class DialogCloser {
         public static readonly DependencyProperty DialogResultProperty =
             DependencyProperty.RegisterAttached(

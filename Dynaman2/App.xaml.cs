@@ -7,9 +7,11 @@ using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
-
-namespace Dynaman2
+using Dynaman.Models;
+using Dynaman.ViewModels;
+namespace Dynaman
 {
+
     public partial class App : Application
     {
         [DllImport("user32.dll")]

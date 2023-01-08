@@ -1,0 +1,62 @@
+﻿<UserControl
+    x:Class="Dynaman.Views.DynamoRecordBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:l="http://schemas.livet-mvvm.net/2011/wpf"
+    xmlns:v="clr-namespace:Dynaman.Views"
+    xmlns:m="clr-namespace:Dynaman.Models"
+    xmlns:vm="clr-namespace:Dynaman.ViewModels"
+    xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:Dynaman.Views"
+    mc:Ignorable="d" 
+    d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <ListView FontSize="22" x:Name="lv" ItemsSource="{Binding Record.Items}" SelectedItem="{Binding SelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="列名">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding ColumnName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="型">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox ItemsSource="{Binding Source={v:EnumList {x:Type m:ColumnTypes}}}" SelectedItem="{Binding ColumnType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="値" Width="300">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Value,Mode=TwoWay}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Margin="10,10,160,10" Command="{Binding AddItemCommand}" CommandParameter="{Binding SelectedItem,ElementName=lv}" Style="{StaticResource MaterialDesignFloatingActionLightButton}" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <wpf:PackIcon Kind="Add" Width="32" Height="32"/>
+        </Button>
+        <Button Margin="10,10,90,10" Command="{Binding RemoveItemCommand}" CommandParameter="{Binding SelectedItem,ElementName=lv}" Style="{StaticResource MaterialDesignFloatingActionLightButton}" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <wpf:PackIcon Kind="Minus" Width="32" Height="32"/>
+        </Button>
+        <Button Margin="10,10,10,10" Command="{Binding SaveCommand}" CommandParameter="{Binding SelectedItem,ElementName=lv}" Style="{StaticResource MaterialDesignFloatingActionLightButton}" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+            <wpf:PackIcon Kind="Floppy" Width="32" Height="32"/>
+        </Button>
+    </Grid>
+</UserControl>

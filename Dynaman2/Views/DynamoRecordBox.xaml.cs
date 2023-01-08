@@ -13,12 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Dynaman2.Views {
+namespace Dynaman.Views
+{
     /// <summary>
-    /// DynamoBox.xaml の相互作用ロジック
+    /// DynamoRecordBox.xaml の相互作用ロジック
     /// </summary>
-    public partial class DynamoBox : UserControl {
-        public DynamoBox() {
+    public partial class DynamoRecordBox : UserControl
+    {
+        public DynamoRecordBox()
+        {
             InitializeComponent();
         }
     }
